@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View retana.tickets View Tree -->
+    <record id="view_retana_tickets_tree" model="ir.ui.view">
+        <field name="name">view_retana_tickets_tree</field>
+        <field name="model">retana.tickets</field>
+        <field name="arch" type="xml">
+            <tree string="Retana Tickets">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="equipment_id"/>
+                <field name="state"/>
+                <field name="priority"/>
+                <field name="user_reported_id"/>
+                <field name="user_assigned_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- View retana.tickets form -->
+    <record id="view_retana_tickets_form" model="ir.ui.view">
+        <field name="name">view_retana_tickets_form</field>
+        <field name="model">retana.tickets</field>
+        <field name="arch" type="xml">
+            <form string="Retana Ticket">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Nombre..." readonly="1" force_save="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="equipment_id"/>
+                        <field name="user_reported_id"/>
+                        <field name="user_assigned_id"/>
+                        <field name="description"/>
+                        <field name="priority"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- View retana.tickets search -->
+    <record id="view_retana_tickets_search" model="ir.ui.view">
+        <field name="name">view_retana_tickets_search</field>
+        <field name="model">retana.tickets</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nombre del Ticket"/>
+                <field name="description" string="Descripción del Ticket"/>
+                <field name="user_reported_id" string="Usuario que Reporta"/>
+                <field name="user_assigned_id" string="Usuario Asignado"/>
+                <group expand="1" string="Group By">
+                    <filter string="Estado" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Prioridad" name="priority" domain="[]" context="{'group_by':'priority'}"/>
+                    <filter string="Usuario Asignado" name="user_assigned_id" domain="[]" context="{'group_by':'user_assigned_id'}"/>
+                    <filter string="Usuario que Reporta" name="user_reported_id" domain="[]" context="{'group_by':'user_reported_id'}"/>
+                    <filter string="Equipo" name="equipment_id" domain="[]" context="{'group_by':'equipment_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action retana.tickets -->
+    <record id="action_retana_tickets" model="ir.actions.act_window">
+        <field name="name">Retana Tickets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">retana.tickets</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No hay ejemplos, haga clic aquí para agregar un nuevo Ticket de Soporte.
+            </p>
+        </field>
+    </record>
+
+    <!-- Barra de menus -->
+
+    <menuitem
+        id="retana_tickets_menu_root"
+        name="Retana Tickets"
+        sequence="10"/>
+
+    <!-- Configuracion -->
+    <menuitem
+        id="retana_tickets_menu_configuration"
+        name="Configuración"
+        parent="retana_tickets_menu_root"
+        sequence="100"
+        groups="retana_tickets.group_retana_tickets_admin"/>
+
+    <menuitem
+        id="retana_tickets_menu"
+        name="Tickets de Soporte"
+        parent="retana_tickets_menu_root"
+        action="action_retana_tickets"
+        groups="retana_tickets.group_retana_tickets_admin,retana_tickets.group_retana_tickets_user"/>
+
+    
+
+</odoo>

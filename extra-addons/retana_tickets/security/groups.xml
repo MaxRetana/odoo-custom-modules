@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- Categoria para Retana Tickets -->
+    <record id="category_retana_tickets" model="ir.module.category">
+        <field name="name">Retana Tickets</field>
+        <field name="description">Módulo para la gestión de tickets de soporte técnico, incluyendo equipos y tipos de equipos.</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_retana_tickets_admin" model="res.groups">
+        <field name="name">Administrador de Retana Tickets</field>
+        <field name="category_id" ref="category_retana_tickets"/>
+    </record>
+
+    <!-- Grupo de Seguridad para Retana Tickets -->
+    <record id="group_retana_tickets_user" model="res.groups">
+        <field name="name">Usuario de Retana Tickets</field>
+        <field name="category_id" ref="category_retana_tickets"/>
+    </record>
+</odoo>

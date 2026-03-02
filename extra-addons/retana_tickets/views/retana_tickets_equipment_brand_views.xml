@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View retana.tickets.equipment.brand View Tree -->
+    <record id="view_retana_tickets_equipment_brand_tree" model="ir.ui.view">
+        <field name="name">view_retana_tickets_equipment_brand_tree</field>
+        <field name="model">retana.tickets.equipment.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Marcas de Equipos">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- View retana.tickets.equipment.brand form -->
+    <record id="view_retana_tickets_equipment_brand_form" model="ir.ui.view">
+        <field name="name">view_retana_tickets_equipment_brand_form</field>
+        <field name="model">retana.tickets.equipment.brand</field>
+        <field name="arch" type="xml">
+            <form string="Marca de Equipo">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- View retana.tickets.equipment.brand search -->
+    <record id="view_retana_tickets_equipment_brand_search" model="ir.ui.view">
+        <field name="name">view_retana_tickets_equipment_brand_search</field>
+        <field name="model">retana.tickets.equipment.brand</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nombre de la Marca"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action retana.tickets.equipment.brand -->
+    <record id="action_retana_tickets_equipment_brand" model="ir.actions.act_window">
+        <field name="name">Marca de Equipo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">retana.tickets.equipment.brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No hay ejemplos, haga clic aquí para agregar una nueva Marca de Equipo.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menuitem retana.tickets.equipment.brand -->
+    <menuitem id="menu_retana_tickets_equipment_brand" name="Marcas de Equipos" parent="retana_tickets_menu_configuration" action="action_retana_tickets_equipment_brand" sequence="30"/>
+
+</odoo>
